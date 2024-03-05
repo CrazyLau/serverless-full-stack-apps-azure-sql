@@ -20,4 +20,4 @@ jobs:
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           # uses dacpac to deploy database schema
-          dacpac-package: './database/dacpac/bus-db.dacpac'
+          dacpac-package: './database/dacpac/sqldb-skeletons-dev.dacpac'
