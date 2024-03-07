@@ -40,8 +40,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except Exception as e:
         return func.HttpResponse(e)
         
-    finally:
-        cursor.close()
+    # finally:
+    #     cursor.close()
 
     return func.HttpResponse(json.dumps(result))
     
