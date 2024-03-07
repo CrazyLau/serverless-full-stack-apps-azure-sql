@@ -7,53 +7,9 @@
 <head>
     <title>Catch The Bus - Azure SQL Sample</title>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <!-- Add references to the OpenLayers JavaScript and CSS files. -->
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
-
-    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
-
     <script type='text/javascript'>
         document.getElementById("demo").innerHTML = "Hello JavaScript!";
-        var raster;
-        var source;
-        var vector;
-        var map;
-        var typeSelect;
-        var draw;
-        var features = new ol.Collection();
-        var format = new ol.format.WKT();
-        var current_shape = "point";
-
-        var fill = new ol.style.Fill({
-            color: 'rgba(167, 122, 210, 0.2)'
-        });
-
-        var stroke = new ol.style.Stroke({
-            color: '#0404B4',
-            width: 2
-        });
-
-        var styles = [
-            new ol.style.Style({
-                image: new ol.style.Circle({
-                    fill: fill,
-                    stroke: stroke,
-                    radius: 5
-                }),
-                fill: fill,
-                stroke: stroke
-            })
-        ];
+ 
 
         function init() {           
             document.getElementById("demo").innerHTML = "Hello JavaScript!";
