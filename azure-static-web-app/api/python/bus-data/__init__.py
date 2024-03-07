@@ -7,39 +7,40 @@ import pyodbc
 from datetime import datetime as dt
 import azure.functions as func
 
-AZURE_CONN_STRING = str(os.environ["AzureSQLConnectionString"])
+# AZURE_CONN_STRING = str(os.environ["AzureSQLConnectionString"])
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    result = {}
+    # result = {}
     
-    # try:
-    #     rid = int(req.params['rid'])
-    #     gid = int(req.params['gid'])
-    # except ValueError:
-    #     rid = 0
-    #     gid = 0
+    # # try:
+    # #     rid = int(req.params['rid'])
+    # #     gid = int(req.params['gid'])
+    # # except ValueError:
+    # #     rid = 0
+    # #     gid = 0
 
-    try: 
-        conn = pyodbc.connect(AZURE_CONN_STRING)
+    # try: 
+    #     conn = pyodbc.connect(AZURE_CONN_STRING)
         
-        with conn.cursor() as cursor:
-            # cursor.execute(f"EXEC [web].[GetMonitoredBusData] ?, ?", rid, gid)
+    #     with conn.cursor() as cursor:
+    #         # cursor.execute(f"EXEC [web].[GetMonitoredBusData] ?, ?", rid, gid)
 
-            # result = cursor.fetchone()[0]
+    #         # result = cursor.fetchone()[0]
 
-            cursor.execute(f"select * from [dbo].[GroceryList] for json auto, include_null_values, without_array_wrapper")
-            result = cursor.fetchone()[0]
+    #         # cursor.execute(f"select * from [dbo].[GroceryList] for json auto, include_null_values, without_array_wrapper")
+    #         # result = cursor.fetchone()[0]
             
-            if result:
-                result = json.loads(result)                           
-            else:
-                result = {}     
+    #         if result:
+    #             result = json.loads(result)                           
+    #         else:
+    #             result = {}     
 
-            logging.info(result)   
+    #         logging.info(result)   
         
-    finally:
-        cursor.close()
+    # finally:
+    #     cursor.close()
 
-    return func.HttpResponse(json.dumps(result))
+    # return func.HttpResponse(json.dumps(result))
+    return func.HttpResponse('Hello World!')
 
 
