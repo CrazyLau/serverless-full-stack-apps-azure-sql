@@ -1,43 +1,14 @@
 <!DOCTYPE html>
 <html>
-<!--
-    Code inspired from https://github.com/clydedacruz/openstreetmap-wkt-playground
--->
+<body>
 
-<head>
-    <title>Catch The Bus - Azure SQL Sample</title>
+<h1>My First JavaScript</h1>
 
-    <script type='text/javascript'>
-        document.getElementById("demo").innerHTML = "Hello JavaScript!";
- 
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = Date()">
+Click me to display Date and Time.</button>
 
-        function init() {           
-            document.getElementById("demo").innerHTML = "Hello JavaScript!";
+<p id="demo"></p>
 
-            // Sample URL: 
-            // http://localhost:3000/azure-static-web-app/client/index.html?rid=100113&gid=1
-            const params = new URLSearchParams(location.search);
-            const rid = params.get('rid');
-            const gid = params.get('gid');
-            const apiUrl = `/api/bus-data?rid=${rid}&gid=${gid}`;
-            $.getJSON(apiUrl, data => {
-                //console.log(data);
-                plotWKT(data);                
-            });
-        }
-
-        function plotWKT(data) {
-          
-        }
-    </script>
-</head>
-
-<body onload="init()">
-    <div class="container-fluid" style="padding:0px;border:0px;height:100%">
-        <div class="span12">
-            <div id="map" class="map" style="z-index: 0"></div>
-        </div>
-    </div>
 </body>
-
-</html>
+</html> 
