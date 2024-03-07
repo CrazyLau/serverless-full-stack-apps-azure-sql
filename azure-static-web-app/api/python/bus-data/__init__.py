@@ -38,7 +38,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             logging.info(result)   
             
     except Exception as e:
-        return func.HttpResponse(e)
+        return func.HttpResponse(e.message)
         
     # finally:
     #     cursor.close()
