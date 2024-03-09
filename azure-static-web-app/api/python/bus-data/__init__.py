@@ -29,7 +29,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
             # result = cursor.fetchone()[0]
 
-            cursor.execute(f"select * from dbo.GroceryList for json auto, include_null_values, without_array_wrapper")
+            cursor.execute(f"select top(1) * from dbo.GroceryList for json auto, include_null_values, without_array_wrapper")
             result = cursor.fetchone()[0]
             
             if result:
