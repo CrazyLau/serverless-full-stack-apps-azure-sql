@@ -7,9 +7,11 @@ import pyodbc
 from datetime import datetime as dt
 import azure.functions as func
 
-AZURE_CONN_STRING = str(os.environ["AzureSQLConnectionString"])
+
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
+    AZURE_CONN_STRING = str(os.environ["AzureSQLConnectionString"])
+
     result = {}
     
     # try:
