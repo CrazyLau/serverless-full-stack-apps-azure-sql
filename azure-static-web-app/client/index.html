@@ -9,15 +9,20 @@
 
 <button type="button" onclick="loadBusData()"> Load Bus Data </button>
 
+<head>
+    <script src=
+"https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
+</head>
+
 <p id="demo"></p>
 
 <script>
 
 function loadBusData() {
-    var apiUrl = '/api/bus-data';
-    $.ajax.getJSON(apiUrl, data => {  
-        console.log(data)
-    });
+    fetch('/api/bus-data') // api for the get request
+    .then(response => response.json())
+    .then(data => console.log(data));
 }
 </script>
 
