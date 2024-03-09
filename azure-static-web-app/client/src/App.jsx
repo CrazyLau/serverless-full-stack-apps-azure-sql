@@ -2,12 +2,16 @@ import React from 'react';
 import RecipeTitle from './RecipeTitle'
 import './index.css'
 
+function callApi() {
+    fetch('https://proud-bush-0cec8fb03.5.azurestaticapps.net/api/bus-data') // api for the get request
+    .then(response => response.json())
+    .then(data => console.log(data));
+  }
+  
+
 function App() {
     return (
-        <article>
-            <h1>Recipe Manager</h1>
-            <RecipeTitle />
-        </article>
+        <button onClick={callApi}>Call API</button>
     )
 }
 
