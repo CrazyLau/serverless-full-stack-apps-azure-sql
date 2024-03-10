@@ -1,13 +1,11 @@
 import React from 'react';
 
 const TableComponent = ({ data }) => {
-  
   if (!data || data.length === 0) {
     return <div>No data available</div>; // Display a message if data is null, undefined, or empty
   }
 
-  const headers = Object.keys(data[0]); // Use the keys of the first object to determine headers
-  
+  const headers = Object.keys(data[0] || {}); // Use the keys of the first object to determine headers
 
   return (
     <table>
