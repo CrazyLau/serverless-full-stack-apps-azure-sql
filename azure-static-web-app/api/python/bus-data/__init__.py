@@ -5,15 +5,13 @@ import azure.functions as func
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     AZURE_CONN_STRING = os.environ.get("AzureSQLConnectionString")
-    result = 0
 
     try: 
         with pyodbc.connect(AZURE_CONN_STRING) as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER")
-            rows = cursor.fetchall()
-            for row in rows:
-                result = json.loads(str(row))
+            row = cursor.fetchall()
+            result = json.loads(str(row))
             
     except pyodbc.Error as e:
         error_string = f"Database error: {str(e)}"
