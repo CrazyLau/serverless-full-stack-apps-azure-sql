@@ -13,7 +13,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER")
             rows = cursor.fetchall()
             for row in rows:
-                results = json.loads(row)
+                results = json.loads(str(row))
             
     except pyodbc.Error as e:
         error_string = f"Database error: {str(e)}"
