@@ -1,8 +1,14 @@
 import React from 'react';
 
 const TableComponent = ({ data }) => {
-  const headers = Object.keys(data[0]);
-  const rows = data.map(item => Object.values(item));
+  
+  if (!data || data.length === 0) {
+    return <div>No data available</div>; // Display a message if data is null, undefined, or empty
+  }
+
+  const headers = Object.keys(data);
+  const rows = [Object.values(data)];
+
 
   return (
     <table>
