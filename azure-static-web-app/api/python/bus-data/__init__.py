@@ -17,7 +17,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             
             # Iterate through each row and append its JSON representation to the result list
             for row in rows:
-                result.append(json.loads(row[0]))
+                result.append(json.loads(str(row)))
             
     except pyodbc.Error as e:
         error_string = f"Database error: {str(e)}"
