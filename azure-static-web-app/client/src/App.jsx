@@ -14,18 +14,18 @@ function callApi() {
         });
 }
 
-function updateApiData(updatedData) {
-    const PUT_URL = 'https://dummyjson.com/products/1';
-    return fetch(PUT_URL, {
-        method: 'PUT',
+function insertApiData(newData) {
+    const POST_URL = 'https://proud-bush-0cec8fb03.5.azurestaticapps.net/api/insert-item'; // Change this URL to the appropriate endpoint
+    return fetch(POST_URL, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedData),
+        body: JSON.stringify(newData),
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Failed to update data');
+            throw new Error('Failed to insert data');
         }
         return response.json();
     });
@@ -50,7 +50,7 @@ function App() {
 
     async function handleUpdate() {
         try {
-            await updateApiData(newData);
+            await insertApiData(newData); // Use the new function to insert data
             fetchData();
         } catch (error) {
             console.error('Error updating data:', error);
@@ -75,19 +75,19 @@ function App() {
             <div>
                 <input
                     type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={newData.name || ''}
+                    name="item_name" // Change the name to match the API endpoint
+                    placeholder="Item"
+                    value={newData.item_name || ''}
                     onChange={handleChange}
                 />
                 <input
                     type="number"
-                    name="price"
-                    placeholder="Price"
-                    value={newData.price || ''}
+                    name="amount" // Change the name to match the API endpoint
+                    placeholder="Amount"
+                    value={newData.amount || ''}
                     onChange={handleChange}
                 />
-                <button onClick={handleUpdate}>Update Data</button>
+                <button onClick={handleUpdate}>Insert Data</button> {/* Update button text */}
             </div>
         </div>
     );
