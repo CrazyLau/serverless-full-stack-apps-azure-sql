@@ -6,9 +6,8 @@ const TableComponent = ({ data }) => {
     return <div>No data available</div>; // Display a message if data is null, undefined, or empty
   }
 
-  const headers = Object.keys(data);
-  const rows = [Object.values(data)];
-
+  const headers = Object.keys(data[0]); // Use the keys of the first object to determine headers
+  
 
   return (
     <table>
@@ -18,9 +17,9 @@ const TableComponent = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row, index) => (
+        {data.map((row, index) => (
           <tr key={index}>
-            {row.map((cell, index) => <td key={index}>{cell}</td>)}
+            {headers.map((header, index) => <td key={index}>{row[header]}</td>)}
           </tr>
         ))}
       </tbody>
