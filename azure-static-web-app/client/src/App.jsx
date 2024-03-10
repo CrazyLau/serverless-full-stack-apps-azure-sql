@@ -9,7 +9,7 @@ function callApi() {
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
-            return response.json();
+            return response;
         });
 }
 
