@@ -7,7 +7,7 @@ def insert_grocery_item(conn_string, item_name, amount):
     try:
         with pyodbc.connect(conn_string) as conn:
             cursor = conn.cursor()
-            cursor.execute(f"INSERT INTO dbo.GroceryList (Item, Amount) VALUES ({item_name}, {amount})")
+            cursor.execute(f"INSERT INTO dbo.GroceryList (Item, Amount) VALUES ('{item_name}', {amount})")
             conn.commit()
     except pyodbc.Error as e:
         raise RuntimeError(f"Database error: {str(e)}")
