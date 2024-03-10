@@ -11,7 +11,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         with pyodbc.connect(AZURE_CONN_STRING) as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER")
-            row = cursor.fetchone()
+            row = cursor.fetchall()
             if row:
                 result = json.loads(row)
             
