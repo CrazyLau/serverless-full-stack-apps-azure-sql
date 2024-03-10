@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import TableComponent from './TableComponent';
 import './index.css';
 
+const API_URL = 'https://proud-bush-0cec8fb03.5.azurestaticapps.net/api/bus-data';
 
 function callApi() {
-    return fetch('https://proud-bush-0cec8fb03.5.azurestaticapps.net/api/bus-data') // For testing: 'https://dummyjson.com/products/1' 
+    return fetch(API_URL)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
@@ -14,7 +15,8 @@ function callApi() {
 }
 
 function updateApiData(updatedData) {
-    return fetch('https://dummyjson.com/products/1', {
+    const PUT_URL = 'https://dummyjson.com/products/1';
+    return fetch(PUT_URL, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -31,11 +33,11 @@ function updateApiData(updatedData) {
 
 function App() {
     const [apiData, setApiData] = useState(null);
-    const [newData, setNewData] = useState({}); // State to hold new data
+    const [newData, setNewData] = useState({});
 
     useEffect(() => {
         fetchData();
-    }, []); // Runs once on component mount
+    }, []);
 
     async function fetchData() {
         try {
@@ -49,7 +51,6 @@ function App() {
     async function handleUpdate() {
         try {
             await updateApiData(newData);
-            // After successful update, refetch data
             fetchData();
         } catch (error) {
             console.error('Error updating data:', error);
