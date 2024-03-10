@@ -1,52 +1,26 @@
-import datetime
-import logging
 import os
-import requests
 import json
 import pyodbc
-from datetime import datetime as dt
 import azure.functions as func
 
-
-
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    AZURE_CONN_STRING = str(os.environ["AzureSQLConnectionString"])
-
+    AZURE_CONN_STRING = os.environ.get("AzureSQLConnectionString")
     result = {}
-    
-    # try:
-    #     rid = int(req.params['rid'])
-    #     gid = int(req.params['gid'])
-    # except ValueError:
-    #     rid = 0
-    #     gid = 0
 
     try: 
-        conn = pyodbc.connect(AZURE_CONN_STRING)
+        with pyodbc.connect(AZURE_CONN_STRING) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES  -- , WITHOUT_ARRAY_WRAPPER")
+            row = cursor.fetchall()
+            if row:
+                result = json.loads(row)
+            
+    except pyodbc.Error as e:
+        error_string = f"Database error: {str(e)}"
+        return func.HttpResponse(error_string, status_code=500)
         
-        with conn.cursor() as cursor:
-            # cursor.execute(f"EXEC [web].[GetMonitoredBusData] ?, ?", rid, gid)
-
-            # result = cursor.fetchone()[0]
-
-            cursor.execute(f"select top(1) * from dbo.GroceryList for json auto, include_null_values, without_array_wrapper")
-            result = cursor.fetchone()[0]
-            
-            if result:
-                result = json.loads(result)                           
-            else:
-                result = {}     
-
-            logging.info(result)   
-            
     except Exception as e:
-        e_string = str(e)
-        return func.HttpResponse(e_string)
+        error_string = f"Error: {str(e)}"
+        return func.HttpResponse(error_string, status_code=500)
         
-    # finally:
-    #     cursor.close()
-
-    return func.HttpResponse(json.dumps(result))
-    
-
-
+    return func.HttpResponse(json.dumps(result), status_code=200)
