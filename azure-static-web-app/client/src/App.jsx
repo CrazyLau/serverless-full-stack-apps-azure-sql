@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TableComponent from './TableComponent';
 import './index.css';
 
+
 function callApi() {
-    return fetch('https://dummyjson.com/products/1')
+    return fetch('https://proud-bush-0cec8fb03.5.azurestaticapps.net/api/bus-data') // For testing: 'https://dummyjson.com/products/1' 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
