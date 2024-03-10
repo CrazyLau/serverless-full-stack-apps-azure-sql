@@ -9,7 +9,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     try: 
         with pyodbc.connect(AZURE_CONN_STRING) as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER")
+            cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES")
             rows = cursor.fetchall()
 
             # Initialize an empty list to store JSON objects for each row
