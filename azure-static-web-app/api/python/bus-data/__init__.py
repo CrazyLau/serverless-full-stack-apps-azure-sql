@@ -10,8 +10,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         with pyodbc.connect(AZURE_CONN_STRING) as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM dbo.GroceryList FOR JSON AUTO, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER")
-            row = cursor.fetchall()
-            result = json.loads(str(row))
+            rows = cursor.fetchall()
+
+            # Initialize an empty list to store JSON objects for each row
+            result = []
+            
+            # Iterate through each row and append its JSON representation to the result list
+            for row in rows:
+                result.append(json.loads(row[0]))
             
     except pyodbc.Error as e:
         error_string = f"Database error: {str(e)}"
