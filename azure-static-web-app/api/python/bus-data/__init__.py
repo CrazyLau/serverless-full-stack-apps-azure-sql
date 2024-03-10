@@ -13,7 +13,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             row = cursor.fetchone()
 
             if row:
-                json_data = f"{[row[0]]}"
+                json_data = str([row[0]])
             else:
                 json_data = "[]"  # Return empty JSON array if no data is fetched
 
