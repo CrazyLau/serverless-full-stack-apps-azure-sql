@@ -6,7 +6,7 @@ import './index.css'
 function callApi() {
     fetch('https://proud-bush-0cec8fb03.5.azurestaticapps.net/api/bus-data') // api for the get request
     .then(response => response.json())
-    .then((data) => {return 'hej';})
+
     // return data
     // return [{"Id": 1, "Item": "Apples", "Amount": 2}]
   }
